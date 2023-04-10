@@ -46,12 +46,12 @@
     }
     #map1 {
       width: 900px;
-      height: 550px;
+      height: 350px;
       margin-bottom: 1em;
     }
     #map2 {
       width: 900px;
-      height: 550px;
+      height: 350px;
       margin-bottom: 1em;
     }
 
@@ -83,17 +83,15 @@
 
 <body>
 
-  <br>
-  <button onclick="changeMap()">Change Map Projection</button>
-
-  <div id="map1"></div>
   
+  <button onclick="changeMap()">Change Map Projection</button>
+  <div id="map1"></div>
   <div id="map2"></div>
- 
+  
 
 
   <script>
-    var map2Created = false;
+
 
 function createmap1() {
   
@@ -104,7 +102,7 @@ function createmap1() {
     {
       layer: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).setOpacity(0.75),
+      }).setOpacity(0.75).addTo(map), //DEFAULT MAP
       icon: 'img/topo.jpg',
       name: 'OpenTopo'
     },
@@ -119,7 +117,7 @@ function createmap1() {
     {
       layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors)'
-      }).addTo(map), //DEFAULT MAP,
+      }),
       icon: 'img/osm.png',
       name: 'OSM'
     },
@@ -191,7 +189,7 @@ control.addOverlay(e.layer, nameWithoutExtension);
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
 kmz.load('Larus_hyperboreus.kmz');
   
-      return map1;
+
     
   }
   
@@ -206,7 +204,6 @@ function createmap2() {
 
 // All the details specific to the custom tile layer.
 // Custom extent for our EPSG:3571-3576 tiles
-
 var extent = 11000000 + 9036842.762 + 667;
 var tileDetails = {
   code: 'EPSG:3575',
@@ -216,7 +213,7 @@ var tileDetails = {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
   zoom: {
     min: 0,
-    max: 4
+    max: 18
   }
 };
 
@@ -229,7 +226,6 @@ var resolutions = [];
 for (var i = tileDetails.zoom.min; i <= tileDetails.zoom.max; i++) {
   resolutions.push(maxResolution / Math.pow(2, i));
 };
-
 
 // Create new CRS for EPSG:3573.
 // Proj4 definition string can be found online.
@@ -355,7 +351,7 @@ legend.onAdd = function (map) {
 
 // Step 3: Add the legend to the map
 legend.addTo(map);
-map2Created = true;
+
 return map2;
 }
 
@@ -369,22 +365,14 @@ return map2;
 
 // JavaScript
 var map1 = createmap1();
-var map2 = null;
-//var map2 = createmap2();
+var map2 = createmap2();
 
 var currentMap = 1;
 
   function changeMap() {
- 
   if (currentMap == 1) {
-
-    if (!map2Created){
- 
-      map2 = createmap2();
-    }
     document.getElementById("map1").style.display = "none";
     document.getElementById("map2").style.display = "block";
-
     currentMap = 2;
   } else {
     document.getElementById("map1").style.display = "block";
