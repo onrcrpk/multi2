@@ -46,12 +46,12 @@
     }
     #map1 {
       width: 900px;
-      height: 550px;
+      height: 650px;
       margin-bottom: 1em;
     }
     #map2 {
       width: 900px;
-      height: 550px;
+      height: 650px;
       margin-bottom: 1em;
     }
 
@@ -125,9 +125,9 @@ function createmap1() {
     },
   ], { position: 'bottomright' }).addTo(map);
   
-  
+
   // Step 2: Retrieve the JSON data from the API endpoint
-  fetch('https://xeno-canto.org/api/2/recordings?query=Somateria%20mollissima')
+  fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
     .then(function (response) {
       return response.json();
     })
@@ -140,21 +140,22 @@ function createmap1() {
         var ssp = recording.ssp;
         var myIconUrl = '';
         var iconSize = [16, 16];
+
         // Set the icon based on the ssp value
         switch (ssp) {
           case '':
             myIconUrl = 'x-14.png';
             iconSize = [16, 16];
             break;
-          case 'borealis':
+          case 'barrovianus':
             myIconUrl = 'b-14.png';
             iconSize = [16, 16];
             break;
-          case 'dresseri':
+          case 'hyperboreus':
             myIconUrl = 'a-14.png';
             iconSize = [16, 16];
             break;
-          case 'mollissima':
+          case 'pallidissimus':
             myIconUrl = 'd-14.png';
             iconSize = [16, 16];
             break;
@@ -188,7 +189,7 @@ var nameWithoutExtension = e.name.replace('.kmz', '');
 control.addOverlay(e.layer, nameWithoutExtension);
 });
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-kmz.load('Somateria_mollissima.kmz');
+kmz.load('Larus_hyperboreus.kmz');
   
       return map1;
     
@@ -263,7 +264,7 @@ var nameWithoutExtension = e.name.replace('.kmz', '');
 control.addOverlay(e.layer, nameWithoutExtension);
 });
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-kmz.load('Somateria_mollissima.kmz');
+kmz.load('Larus_hyperboreus.kmz');
 
 
 
@@ -282,7 +283,7 @@ var myIcon = L.icon({
 
 
 // Step 2: Retrieve the JSON data from the API endpoint
-fetch('https://xeno-canto.org/api/2/recordings?query=Somateria%20mollissima')
+fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
   .then(function (response) {
     return response.json();
   })
@@ -296,29 +297,28 @@ fetch('https://xeno-canto.org/api/2/recordings?query=Somateria%20mollissima')
       var myIconUrl = '';
       var iconSize = [16, 16];
 
-     
-        // Set the icon based on the ssp value
-        switch (ssp) {
-          case '':
-            myIconUrl = 'x-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'borealis':
-            myIconUrl = 'b-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'dresseri':
-            myIconUrl = 'a-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'mollissima':
-            myIconUrl = 'd-14.png';
-            iconSize = [16, 16];
-            break;
-          // Add additional cases for other ssp values as needed
-          default:
-            myIconUrl = 'default.png';
-        }
+      // Set the icon based on the ssp value
+      switch (ssp) {
+        case '':
+          myIconUrl = 'x-14.png';
+          iconSize = [16, 16];
+          break;
+        case 'barrovianus':
+          myIconUrl = 'b-14.png';
+          iconSize = [16, 16];
+          break;
+        case 'hyperboreus':
+          myIconUrl = 'a-14.png';
+          iconSize = [16, 16];
+          break;
+        case 'pallidissimus':
+          myIconUrl = 'd-14.png';
+          iconSize = [16, 16];
+          break;
+        // Add additional cases for other ssp values as needed
+        default:
+          myIconUrl = 'default.png';
+      }
 
       // Define a new icon object based on the ssp value
       var myIcon = L.icon({
