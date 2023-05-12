@@ -45,13 +45,13 @@
       margin-bottom: 1em;
     }
     #map1 {
-      width: 900px;
-      height: 550px;
+      width: 1800px;
+      height: 750px;
       margin-bottom: 1em;
     }
     #map2 {
-      width: 900px;
-      height: 550px;
+      width: 1800px;
+      height: 750px;
       margin-bottom: 1em;
     }
 
@@ -89,8 +89,7 @@
   <div id="map1"></div>
   
   <div id="map2"></div>
- 
-
+  
 
   <script>
     var map2Created = false;
@@ -127,7 +126,7 @@ function createmap1() {
   
 
   // Step 2: Retrieve the JSON data from the API endpoint
-  fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
+  fetch('https://xeno-canto.org/api/2/recordings?query=Somateria%20mollissima')
     .then(function (response) {
       return response.json();
     })
@@ -189,7 +188,7 @@ var nameWithoutExtension = e.name.replace('.kmz', '');
 control.addOverlay(e.layer, nameWithoutExtension);
 });
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-kmz.load('Larus_hyperboreus.kmz');
+kmz.load('Somateria_mollissima.kmz');
   
       return map1;
     
@@ -264,7 +263,7 @@ var nameWithoutExtension = e.name.replace('.kmz', '');
 control.addOverlay(e.layer, nameWithoutExtension);
 });
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-kmz.load('Larus_hyperboreus.kmz');
+kmz.load('Somateria_mollissima.kmz');
 
 
 
@@ -283,7 +282,7 @@ var myIcon = L.icon({
 
 
 // Step 2: Retrieve the JSON data from the API endpoint
-fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
+fetch('https://xeno-canto.org/api/2/recordings?query=Somateria%20mollissima')
   .then(function (response) {
     return response.json();
   })
