@@ -140,29 +140,33 @@ function createmap1() {
         var ssp = recording.ssp;
         var myIconUrl = '';
         var iconSize = [16, 16];
-
-        // Set the icon based on the ssp value
-        switch (ssp) {
-          case '':
-            myIconUrl = 'x-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'barrovianus':
-            myIconUrl = 'b-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'hyperboreus':
-            myIconUrl = 'a-14.png';
-            iconSize = [16, 16];
-            break;
-          case 'pallidissimus':
-            myIconUrl = 'd-14.png';
-            iconSize = [16, 16];
-            break;
-          // Add additional cases for other ssp values as needed
-          default:
-            myIconUrl = 'default.png';
-        }
+        var zIndex= 0;
+          // Set the icon based on the ssp value
+          switch (ssp) {
+            case '':
+              myIconUrl = 'x-14.png';
+              iconSize = [16, 16];
+              zIndex = 5;
+              break;
+            case 'barrovianus':
+              myIconUrl = 'b-14.png';
+              iconSize = [16, 16];
+              zIndex = 40;
+              break;
+            case 'hyperboreus':
+              myIconUrl = 'a-14.png';
+              iconSize = [16, 16];
+              zIndex = 50;
+              break;
+            case 'pallidissimus':
+              myIconUrl = 'd-14.png';
+              iconSize = [16, 16];
+              zIndex = 30;
+              break;
+            // Add additional cases for other ssp values as needed
+            default:
+              myIconUrl = 'x-14.png';
+          }
 
         // Define a new icon object based on the ssp value
         var myIcon = L.icon({
@@ -174,7 +178,8 @@ function createmap1() {
 
         // Add a new marker for this recording with the appropriate icon
         L.marker([recording.lat, recording.lng], {
-          icon: myIcon
+          icon: myIcon,
+          zIndexOffset: zIndex
         }).bindPopup('<b>' + recording.en + '</b><br>' + recording.loc + '<br><audio controls><source src="' + recording.file + '" type="audio/mpeg"></audio>')
           .addTo(map);
       });
@@ -296,29 +301,34 @@ fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
       var ssp = recording.ssp;
       var myIconUrl = '';
       var iconSize = [16, 16];
+      var zIndex = 0;
 
-      // Set the icon based on the ssp value
-      switch (ssp) {
-        case '':
-          myIconUrl = 'x-14.png';
-          iconSize = [16, 16];
-          break;
-        case 'barrovianus':
-          myIconUrl = 'b-14.png';
-          iconSize = [16, 16];
-          break;
-        case 'hyperboreus':
-          myIconUrl = 'a-14.png';
-          iconSize = [16, 16];
-          break;
-        case 'pallidissimus':
-          myIconUrl = 'd-14.png';
-          iconSize = [16, 16];
-          break;
-        // Add additional cases for other ssp values as needed
-        default:
-          myIconUrl = 'default.png';
-      }
+          // Set the icon based on the ssp value
+          switch (ssp) {
+            case '':
+              myIconUrl = 'x-14.png';
+              iconSize = [16, 16];
+              zIndex = 5;
+              break;
+            case 'barrovianus':
+              myIconUrl = 'b-14.png';
+              iconSize = [16, 16];
+              zIndex = 40;
+              break;
+            case 'hyperboreus':
+              myIconUrl = 'a-14.png';
+              iconSize = [16, 16];
+              zIndex = 50;
+              break;
+            case 'pallidissimus':
+              myIconUrl = 'd-14.png';
+              iconSize = [16, 16];
+              zIndex = 30;
+              break;
+            // Add additional cases for other ssp values as needed
+            default:
+              myIconUrl = 'x-14.png';
+          }
 
       // Define a new icon object based on the ssp value
       var myIcon = L.icon({
@@ -330,7 +340,8 @@ fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
 
       // Add a new marker for this recording with the appropriate icon
       L.marker([recording.lat, recording.lng], {
-        icon: myIcon
+        icon: myIcon,
+        zIndexOffset: zIndex
       }).bindPopup('<b>' + recording.en + '</b><br>' + recording.loc + '<br><audio controls><source src="' + recording.file + '" type="audio/mpeg"></audio>')
         .addTo(map);
     });
