@@ -264,7 +264,7 @@ var nameWithoutExtension = e.name.replace('.kmz', '');
 control.addOverlay(e.layer, nameWithoutExtension);
 });
 // Add remote KMZ files as layers (NB if they are 3rd-party servers, they MUST have CORS enabled)
-kmz.load('Larus_hyperboreus.kmz');
+kmz.load('Uria_lomvia.kmz');
 
 
 
@@ -283,7 +283,7 @@ var myIcon = L.icon({
 
 
 // Step 2: Retrieve the JSON data from the API endpoint
-fetch('https://xeno-canto.org/api/2/recordings?query=Larus%20hyperboreus')
+fetch('https://xeno-canto.org/api/2/recordings?query=Uria%20lomvia')
   .then(function (response) {
     return response.json();
   })
